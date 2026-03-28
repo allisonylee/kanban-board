@@ -1,5 +1,10 @@
 import { MoreHorizontal, Trash2 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,9 +13,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { Doc } from "../../convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import type { Doc } from "../../convex/_generated/dataModel";
 
 type TaskCardProps = {
   task: Doc<"tasks">;
@@ -34,23 +39,36 @@ function TaskCard({ task }: TaskCardProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {task.status !== "todo" && (
-              <DropdownMenuItem onClick={() => updateStatus({id: task._id, status: "todo"})}>
+              <DropdownMenuItem
+                onClick={() =>
+                  updateStatus({ id: task._id, status: "todo" })
+                }
+              >
                 Move to To Do
               </DropdownMenuItem>
             )}
             {task.status !== "in-progress" && (
-              <DropdownMenuItem onClick={() => updateStatus({id: task._id, status: "in-progress"})} >
+              <DropdownMenuItem
+                onClick={() =>
+                  updateStatus({ id: task._id, status: "in-progress" })
+                }
+              >
                 Move to In Progress
               </DropdownMenuItem>
             )}
             {task.status !== "done" && (
-              <DropdownMenuItem onClick={() => updateStatus({id: task._id, status: "done"})}>
+              <DropdownMenuItem
+                onClick={() =>
+                  updateStatus({ id: task._id, status: "done" })
+                }
+              >
                 Move to Done
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive"
-              onClick={() => removeTask({id: task._id})}  
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={() => removeTask({ id: task._id })}
             >
               <Trash2 className="mr-2 h-4 w-4" />
               Delete
