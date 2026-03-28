@@ -8,10 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { moveTask, deleteTask, type Task } from "@/store/task-store";
+import type { Doc } from "../../convex/_generated/dataModel";
 
 type TaskCardProps = {
-  task: Task;
+  task: Doc<"tasks">;
 };
 
 function TaskCard({ task }: TaskCardProps) {
@@ -29,27 +29,22 @@ function TaskCard({ task }: TaskCardProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {task.status !== "todo" && (
-              <DropdownMenuItem onClick={() => moveTask(task.id, "todo")}>
+              <DropdownMenuItem>
                 Move to To Do
               </DropdownMenuItem>
             )}
             {task.status !== "in-progress" && (
-              <DropdownMenuItem
-                onClick={() => moveTask(task.id, "in-progress")}
-              >
+              <DropdownMenuItem>
                 Move to In Progress
               </DropdownMenuItem>
             )}
             {task.status !== "done" && (
-              <DropdownMenuItem onClick={() => moveTask(task.id, "done")}>
+              <DropdownMenuItem>
                 Move to Done
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              className="text-destructive"
-              onClick={() => deleteTask(task.id)}
-            >
+            <DropdownMenuItem className="text-destructive">
               <Trash2 className="mr-2 h-4 w-4" />
               Delete
             </DropdownMenuItem>
