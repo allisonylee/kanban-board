@@ -36,3 +36,11 @@ export const updateStatus = mutation({
     }
 })
 
+export const remove = mutation({
+    args: {
+        id: v.id("tasks"),
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.delete(args.id);
+    }
+})
